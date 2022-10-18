@@ -19,10 +19,12 @@
     if(mysqli_num_rows($check)) {
         echo "<script>alert('Name Already Exist!');</script>";
     } else {
-        $sql = mysqli_query($conn, "INSERT INTO table_records(Name, Age, contactNumber, Address, Email, creationDate) 
-        VALUES('$name', '$age', '$number', '$address', '$email', NOW())");
-        
-        if($sql) {
+        // perform query to database
+        $sql = "INSERT INTO table_records(Name, Age, contactNumber, Address, Email, creationDate) 
+        VALUES('$name', '$age', '$number', '$address', '$email', NOW())";
+        $query = $conn->query($sql);
+
+        if($query) {
             echo "<script>alert('New Record Added!');</script>";
         } else {
             echo "<script>alert('Something went wrong');</script>";
@@ -35,10 +37,15 @@
         // intval to get the int value of varible $_GET[delete]
         $id = intval($_GET['delete']);
         // query to database
-        $sql = mysqli_query($conn,"DELETE FROM table_records WHERE ID='$id'");
-        // display a message
-        echo "<script>alert('Record Deleted!');</script>";
-        echo "<script>window.location='index.php';</script>";
+        $sql = "DELETE FROM table_records WHERE ID='$id'";
+        $query = $conn->query($sql);
+        if($query) {
+            // display a message
+            echo "<script>alert('Record Deleted!');</script>";
+            echo "<script>window.location='index.php';</script>";
+        } else {
+            echo "<script>alert('Something went wrong');</script>";
+        }
     }
 ?>
 <html lang="en">

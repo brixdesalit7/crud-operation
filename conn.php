@@ -1,4 +1,5 @@
 <?php 
+    // mysqli object oriented
     $server = "localhost";
     $username = "root";
     $password = "";

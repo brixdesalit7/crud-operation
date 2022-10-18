@@ -10,8 +10,9 @@ $address = $_POST['address'];
 $email = $_POST['email'];
 
 // perform a query to database
-$sql = mysqli_query($conn," UPDATE table_records SET Name='$name', Age='$age', contactNumber='$number', Address='$address', Email='$email' WHERE ID='$id' ");
-if($sql){
+$sql ="UPDATE table_records SET Name='$name', Age='$age', contactNumber='$number', Address='$address', Email='$email' WHERE ID='$id' ";
+$query = $conn->query($sql);
+if($query){
     echo "<script>alert('Record Updated!');</script>";
     echo "<script>document.location='index.php';</script>";
 }else {
